@@ -7,11 +7,11 @@ CREATE SCHEMA `full-stack-languageapp`;
 USE `full-stack-languageapp` ;
 
 -- -----------------------------------------------------
--- Table `full-stack-languageapp`.`category`
+-- Table `full-stack-languageapp`.`genre`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `full-stack-languageapp`.`category` (
+CREATE TABLE IF NOT EXISTS `full-stack-languageapp`.`genre` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `category_name` VARCHAR(255) NULL DEFAULT NULL,
+  `genre_name` VARCHAR(255) NULL DEFAULT NULL,
   
   PRIMARY KEY (`id`))
 
@@ -58,12 +58,12 @@ CREATE TABLE IF NOT EXISTS `full-stack-languageapp`.`song` (
   `date_created` DATETIME(6) DEFAULT NULL,
   `last_updated` DATETIME(6) DEFAULT NULL,
   `artist_id` BIGINT(20) NOT NULL,
-  `category_id` BIGINT(20) NOT NULL,
+  `genre_id` BIGINT(20) NOT NULL,
 
   PRIMARY KEY (`id`),
  
-  KEY `fk_category` (`category_id`),
-  CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  KEY `fk_genre` (`genre_id`),
+  CONSTRAINT `fk_genre` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`),
   
   KEY `fk_artist` (`artist_id`),
   CONSTRAINT `fk_artist` FOREIGN KEY (`artist_id`) REFERENCES `artist` (`id`)
