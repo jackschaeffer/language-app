@@ -1,5 +1,5 @@
 -- -----------------------------------------------------
--- Schema full-stack-ecommerce
+-- Schema full-stack-languageapp
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `full-stack-languageapp`;
 
