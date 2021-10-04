@@ -19,14 +19,31 @@ ENGINE=InnoDB
 AUTO_INCREMENT = 1;
 
 -- -----------------------------------------------------
+-- Table `full-stack-languageapp`.`region`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `full-stack-languageapp`.`region` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `region_name` VARCHAR(255) NULL DEFAULT NULL,
+  `region_icon` VARCHAR(255) NULL DEFAULT NULL,
+  
+  PRIMARY KEY (`id`))
+
+ENGINE=InnoDB
+AUTO_INCREMENT = 1;
+
+-- -----------------------------------------------------
 -- Table `full-stack-languageapp`.`artist`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `full-stack-languageapp`.`artist` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `artist_name` VARCHAR(255) NULL DEFAULT NULL,
-  `region` VARCHAR(255) NULL DEFAULT NULL,
+  `region_id` BIGINT(20) NULL DEFAULT NULL,
   
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  
+  KEY `fk_region` (`region_id`),
+  CONSTRAINT `fk_region` FOREIGN KEY (`region_id`) REFERENCES `region` (`id`))
+  
 
 ENGINE=InnoDB
 AUTO_INCREMENT = 1;
