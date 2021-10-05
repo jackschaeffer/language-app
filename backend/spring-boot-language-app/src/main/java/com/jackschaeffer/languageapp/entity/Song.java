@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name="song")
@@ -24,6 +25,14 @@ public class Song {
     @ManyToOne
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
+
+    @ManyToMany
+    @JoinTable(
+        name = "song_phrase",
+        joinColumns = @JoinColumn(name = "song_id"),
+        inverseJoinColumns = @JoinColumn(name = "phrase_id")
+    )
+    private Set<Phrase> phrases;
 
     @Column(name = "fr_name")
     private String frName;
