@@ -72,6 +72,8 @@ CREATE TABLE IF NOT EXISTS `full-stack-languageapp`.`song` (
   `fr_lyrics` VARCHAR(5000) DEFAULT NULL,
   `en_lyrics` VARCHAR(5000) DEFAULT NULL,
   `image_url` VARCHAR(255) DEFAULT NULL,
+  `youtube_url` VARCHAR(255) DEFAULT NULL,
+  `release_year` INT(5) DEFAULT NULL,
   `date_created` DATETIME(6) DEFAULT NULL,
   `last_updated` DATETIME(6) DEFAULT NULL,
   `artist_id` BIGINT(20) NOT NULL,
