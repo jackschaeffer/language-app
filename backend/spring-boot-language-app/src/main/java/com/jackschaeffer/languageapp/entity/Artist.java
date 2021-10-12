@@ -24,7 +24,7 @@ public class Artist {
     private Set<Song> songs;
 
     @ManyToOne
-    @JoinColumn(name = "region_id", nullable = false)
+    @JoinColumn(name = "region_id")
     private Region region;
 
 }

@@ -55,8 +55,8 @@ public class Song {
     @Column(name = "youtube_url")
     private String youtubeUrl;
 
-    @Column(name = "year_released")
-    private int yearReleased;
+    @Column(name = "release_year")
+    private int releaseYear;
 
     @Column(name = "date_created")
     @CreationTimestamp
