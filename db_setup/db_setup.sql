@@ -66,8 +66,8 @@ AUTO_INCREMENT = 1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `full-stack-languageapp`.`song` (
   `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
-  `fr_name` VARCHAR(255) DEFAULT NULL,
-  `en_name` VARCHAR(255) DEFAULT NULL,
+  `fr_title` VARCHAR(255) DEFAULT NULL,
+  `en_title` VARCHAR(255) DEFAULT NULL,
   `description` VARCHAR(255) DEFAULT NULL,
   `fr_lyrics` VARCHAR(5000) DEFAULT NULL,
   `en_lyrics` VARCHAR(5000) DEFAULT NULL,

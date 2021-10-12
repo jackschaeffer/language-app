@@ -34,11 +34,11 @@ public class Song {
     )
     private Set<Phrase> phrases;
 
-    @Column(name = "fr_name")
-    private String frName;
+    @Column(name = "fr_title")
+    private String frTitle;
 
-    @Column(name = "en_name")
-    private String enName;
+    @Column(name = "en_title")
+    private String enTitle;
 
     @Column(name = "description")
     private String description;
