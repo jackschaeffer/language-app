@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+td a {
+    text-decoration: none;
+}
+
+.title {
+    font-size: larger;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+}
