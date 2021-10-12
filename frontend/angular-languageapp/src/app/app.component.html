@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	<a class="navbar-brand" href="#">LanguageApp</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -19,50 +19,83 @@
 </nav>
 
 <br><br>
+
 <div class="container">
-	<div class="container">
-		<h1>Translated Songs</h1>
-	</div>
-
-	<br>
-
-	<div class="card">
-		<h5 class="card-header">Search Songs</h5>
-		<form>
-			<div class="card-body row">
-				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Song name">
-				</div>
-				<div class="col-md-4">
-					<input type="text" class="form-control" placeholder="Artist">
-				</div>
-
-				<div class="col-md-2">
-					<select class="form-select" >
-						<option value="">Genre</option>
-						<option>Pop</option>
-						<option>R&B</option>
-					</select>
-				</div>
-				<button type="submit" class="btn btn-primary col-md-2">Search</button>
-			</div>
-		</form>
-	</div>
+  <h1>Translated Songs</h1> <br>
 </div>
 
+<div class="container">
+  <div class="container">
+    <div class="card">
+      <h5 class="card-header">Search Songs</h5>
+      <form>
+        <div class="card-body row">
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Song name">
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form-control" placeholder="Artist">
+          </div>
+          <div class="col-md-2">
+            <select class="form-select" >
+              <option value="">Genre</option>
+              <option>Pop</option>
+              <option>R&B</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <div class="d-grid"><button type="submit" class="btn btn-primary ">Search</button></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 <br><br>
 
 <div class="container">
-  <app-song-list></app-song-list>
+  <div class="row">
+    <div class="col-md-9">
+        <app-song-list></app-song-list>
+        <br>
+    </div>
+
+
+    <div class="col-md-3 sidebar">
+      
+      <div class="card">
+        <p class="card-header">Top Artists</p>
+        <div class="card-body">
+          <ul>
+            <li><a href="#">Eli Rose</a></li>
+            <li><a href="#">Shay</a></li>
+          </ul>
+        </div>
+      </div>
+      <br>
+      <div class="card">
+        <p class="card-header">Top Genres</p>
+        <div class="card-body">
+          <ul>
+            <li><a href="#">Pop</a></li>
+            <li><a href="#">R&B</a></li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
 </div>
+
 
 
 <br><br>
 <footer class="bg-light">
   <ul>
-    <li><a href="#">About Site</a></li>
-    <li><a href="#">Creator</a></li>
+    <li><a href="#">About Site</a></li> | 
+    <li><a href="#">Creator</a></li> |
     <li><a href="#">Help</a></li>
   </ul>
 </footer>

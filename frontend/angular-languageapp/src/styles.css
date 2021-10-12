@@ -7,9 +7,33 @@ td a {
     font-size: larger;
 }
 
+
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+
+
 footer {
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     width: 100%;
-    height: 50px;
+    text-align: center;
+    padding: 20px;
+}
+footer li {
+    display:inline;
+  }
+footer a {
+    text-decoration: none;
+}
+
+.bdr {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    overflow:hidden;
+}
+tbody.nb {
+    border-top: 0px !important;
 }
