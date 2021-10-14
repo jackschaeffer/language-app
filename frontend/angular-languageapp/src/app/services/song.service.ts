@@ -13,7 +13,10 @@ export class SongService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSongList(): Observable<Song[]>{
+  getSongList(theGenreId: number): Observable<Song[]>{
+
+    // 
+
     return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
       map(response => response._embedded.songs)
     );

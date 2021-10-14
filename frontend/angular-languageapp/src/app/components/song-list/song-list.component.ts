@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Song } from 'src/app/common/song';
 import { SongService } from 'src/app/services/song.service';
 
@@ -10,15 +11,35 @@ import { SongService } from 'src/app/services/song.service';
 export class SongListComponent implements OnInit {
 
   songs!: Song[];
+  currentSongId!: number;
 
-  constructor(private songService: SongService) { }
+  constructor(private songService: SongService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.listSongs();
+    this.route.paramMap.subscribe(() => {
+      this.listSongs();
+    });
   }
 
   listSongs(){
-    this.songService.getSongList().subscribe(
+
+    // check if id parameter is available
+          // route = activated route
+          // snapshot = state of route at the given momenent in time
+          // paraMap = map of all route params (params name based on route configs)
+    const hasGenreId: boolean = this.route.snapshot.paramMap.has('id');
+
+    if (hasGenreId) {
+      this.currentSongId = +this.route.snapshot.paramMap.get('id')!;
+    }
+    else {
+      // no genre id available set default to 1
+      this.currentSongId = 1;
+    }
+
+    // get songs for given genre id
+    this.songService.getSongList(this.currentSongId).subscribe(
       data => {
         this.songs = data;
       }

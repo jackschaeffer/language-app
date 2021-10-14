@@ -12,8 +12,8 @@ const routes: Routes = [
   {path: 'genres/:id', component: SongListComponent},
   {path: 'genre', component: SongListComponent},
   {path: 'songs', component: SongListComponent},
-  {path: '', redirectTo: '/products', pathMatch: 'full'},
-  {path: '**', redirectTo: '/products', pathMatch: 'full'}
+  {path: '', redirectTo: '/songs', pathMatch: 'full'},
+  {path: '**', redirectTo: '/songs', pathMatch: 'full'}
 ];
 
 @NgModule({
