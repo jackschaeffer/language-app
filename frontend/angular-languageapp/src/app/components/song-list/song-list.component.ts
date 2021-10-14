@@ -31,19 +31,24 @@ export class SongListComponent implements OnInit {
     const hasGenreId: boolean = this.route.snapshot.paramMap.has('id');
 
     if (hasGenreId) {
-      this.currentSongId = +this.route.snapshot.paramMap.get('id')!;
+        this.currentSongId = +this.route.snapshot.paramMap.get('id')!;
+
+        // get songs for given genre id
+        this.songService.getSongListByGenre(this.currentSongId).subscribe(
+          data => {
+            this.songs = data;
+          }
+        )
     }
     else {
       // no genre id available set default to 1
-      this.currentSongId = 1;
+      // get songs dont pass id
+      this.songService.getSongList().subscribe(
+        data => {
+          this.songs = data;
+        }
+      )
     }
-
-    // get songs for given genre id
-    this.songService.getSongList(this.currentSongId).subscribe(
-      data => {
-        this.songs = data;
-      }
-    )
   }
 
 }

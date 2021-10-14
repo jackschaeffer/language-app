@@ -13,10 +13,18 @@ export class SongService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getSongList(theGenreId: number): Observable<Song[]>{
+  
+  getSongListByGenre(theGenreId: number): Observable<Song[]>{
+    const genreSearchUrl = `${this.baseUrl}/search/findByGenreId?id=${theGenreId}`;
 
-    // 
+    return this.httpClient.get<GetResponse>(genreSearchUrl).pipe(
+      map(response => response._embedded.songs)
+    );
+  }
 
+
+
+  getSongList(): Observable<Song[]>{
     return this.httpClient.get<GetResponse>(this.baseUrl).pipe(
       map(response => response._embedded.songs)
     );
