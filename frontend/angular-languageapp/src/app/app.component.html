@@ -54,12 +54,22 @@
 
 <br><br>
 
+
+
+
+<!-- SONG LIST CONTENT -->
+
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-        <app-song-list></app-song-list>
+        <router-outlet></router-outlet>
         <br>
     </div>
+
+
+
+
+
 
 
     <div class="col-md-3 sidebar">
@@ -68,8 +78,7 @@
         <p class="card-header">Top Artists</p>
         <div class="card-body">
           <ul>
-            <li><a href="#">Eli Rose</a></li>
-            <li><a href="#">Shay</a></li>
+            <li><a routerLink="/artists/1" routerLinkActive="active-link">Eli Rose</a></li>
           </ul>
         </div>
       </div>
@@ -78,8 +87,7 @@
         <p class="card-header">Top Genres</p>
         <div class="card-body">
           <ul>
-            <li><a href="#">Pop</a></li>
-            <li><a href="#">R&B</a></li>
+            <li><a routerLink="/genres/1" routerLinkActive="active-link">Pop</a></li>
           </ul>
         </div>
       </div>
