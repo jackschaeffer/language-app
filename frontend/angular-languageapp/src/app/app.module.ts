@@ -6,6 +6,7 @@ import { SongListComponent } from './components/song-list/song-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SongService } from './services/song.service';
 import { Routes, RouterModule } from '@angular/router';
+import { GenreSidebarComponent } from './components/genre-sidebar/genre-sidebar.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SongListComponent
+    SongListComponent,
+    GenreSidebarComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

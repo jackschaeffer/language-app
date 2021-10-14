@@ -11,7 +11,7 @@ import { SongService } from 'src/app/services/song.service';
 export class SongListComponent implements OnInit {
 
   songs!: Song[];
-  currentSongId!: number;
+  currentGenreId!: number;
 
   constructor(private songService: SongService,
               private route: ActivatedRoute) { }
@@ -31,10 +31,11 @@ export class SongListComponent implements OnInit {
     const hasGenreId: boolean = this.route.snapshot.paramMap.has('id');
 
     if (hasGenreId) {
-        this.currentSongId = +this.route.snapshot.paramMap.get('id')!;
+        this.currentGenreId = +this.route.snapshot.paramMap.get('id')!;
+        
 
         // get songs for given genre id
-        this.songService.getSongListByGenre(this.currentSongId).subscribe(
+        this.songService.getSongListByGenre(this.currentGenreId).subscribe(
           data => {
             this.songs = data;
           }

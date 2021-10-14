@@ -57,11 +57,12 @@
 
 
 
-<!-- SONG LIST CONTENT -->
-
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+
+
+    <!-- SONG LIST CONTENT -->
+    <div class="col-lg-9">
         <router-outlet></router-outlet>
         <br>
     </div>
@@ -69,11 +70,16 @@
 
 
 
-
-
-
-    <div class="col-md-3 sidebar">
+    <!-- SIDE BAR WITH ARTIST AND GENRE CONTENT -->
+    <div class="col-lg-3 sidebar">
       
+
+      <!-- GENRE SIDE BAR COMPONENT -->
+      <app-genre-sidebar></app-genre-sidebar>
+      <br>
+
+
+      <!-- ARTIST SIDE BAR  -->
       <div class="card">
         <p class="card-header">Top Artists</p>
         <div class="card-body">
@@ -82,15 +88,8 @@
           </ul>
         </div>
       </div>
-      <br>
-      <div class="card">
-        <p class="card-header">Top Genres</p>
-        <div class="card-body">
-          <ul>
-            <li><a routerLink="/genres/1" routerLinkActive="active-link">Pop</a></li>
-          </ul>
-        </div>
-      </div>
+
+
 
 
     </div>

@@ -1,0 +1,15 @@
+<div class="card">
+    <p class="card-header">Top Genres</p>
+    <div class="card-body">
+        <ul>
+
+
+            <li *ngFor="let genre of genres">
+                <a routerLink="/genres/{{ genre.id }}" routerLinkActive="active-link">{{ genre.genreName }}</a>
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+  
