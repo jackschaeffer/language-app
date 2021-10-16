@@ -14,4 +14,6 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     Page<Song> findByGenreId(@RequestParam("id") Long id, Pageable pageable);
 
     Page<Song> findByArtistId(@RequestParam("id") Long id, Pageable pageable);
+
+    Page<Song> findByFrTitleContaining(@RequestParam("title") String frTitle, Pageable page);
 }
