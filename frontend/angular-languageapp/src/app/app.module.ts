@@ -7,11 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { SongService } from './services/song.service';
 import { Routes, RouterModule } from '@angular/router';
 import { GenreSidebarComponent } from './components/genre-sidebar/genre-sidebar.component';
+import { ArtistSidebarComponent } from './components/artist-sidebar/artist-sidebar.component';
 
 
 const routes: Routes = [
-  {path: 'genres/:id', component: SongListComponent},
-  {path: 'genre', component: SongListComponent},
+  {path: 'genres/:genreId', component: SongListComponent},
+  {path: 'genres', component: SongListComponent},
+  {path: 'artists/:artistId', component: SongListComponent},
+  {path: 'artists', component: SongListComponent},
   {path: 'songs', component: SongListComponent},
   {path: '', redirectTo: '/songs', pathMatch: 'full'},
   {path: '**', redirectTo: '/songs', pathMatch: 'full'}
@@ -21,7 +24,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     SongListComponent,
-    GenreSidebarComponent
+    GenreSidebarComponent,
+    ArtistSidebarComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
