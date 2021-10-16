@@ -23,4 +23,11 @@
             </tbody>
 
         </table>
+
+        <div *ngIf="songs?.length == 0" class="container">
+            <div class="alert alert-danger col-md-12" role="alert">
+                No songs found.
+            </div>
+        </div>
+
     </div>

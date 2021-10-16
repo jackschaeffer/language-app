@@ -8,9 +8,11 @@ import { SongService } from './services/song.service';
 import { Routes, RouterModule } from '@angular/router';
 import { GenreSidebarComponent } from './components/genre-sidebar/genre-sidebar.component';
 import { ArtistSidebarComponent } from './components/artist-sidebar/artist-sidebar.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 const routes: Routes = [
+  {path: 'search/:keyword', component: SongListComponent},
   {path: 'genres/:genreId', component: SongListComponent},
   {path: 'genres', component: SongListComponent},
   {path: 'artists/:artistId', component: SongListComponent},
@@ -25,7 +27,8 @@ const routes: Routes = [
     AppComponent,
     SongListComponent,
     GenreSidebarComponent,
-    ArtistSidebarComponent
+    ArtistSidebarComponent,
+    SearchComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

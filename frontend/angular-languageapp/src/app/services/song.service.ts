@@ -23,17 +23,13 @@ export class SongService {
   getSongListByGenre(theGenreId: number): Observable<Song[]>{
     const genreSearchUrl = `${this.baseUrl}/search/findByGenreId?id=${theGenreId}`;
 
-    return this.httpClient.get<GetResponseSongs>(genreSearchUrl).pipe(
-      map(response => response._embedded.songs)
-    );
+    return this.getSongs(genreSearchUrl);
   }
 
   getSongListByArtist(theArtistId: number) {
     const artistSearchUrl = `${this.baseUrl}/search/findByArtistId?id=${theArtistId}`;
 
-    return this.httpClient.get<GetResponseSongs>(artistSearchUrl).pipe(
-      map(response => response._embedded.songs)
-    );
+    return this.getSongs(artistSearchUrl);
   }
 
   getSongList(): Observable<Song[]>{
@@ -55,6 +51,18 @@ export class SongService {
     );
   }
 
+  searchSongs(theKeyword: string): Observable<Song[]>{
+    const searchUrl = `${this.baseUrl}/search/findByFrTitleContaining?frTitle=${theKeyword}`;
+
+    return this.getSongs(searchUrl);
+  }
+
+
+  private getSongs(searchUrl: string): Observable<Song[]> {
+    return this.httpClient.get<GetResponseSongs>(searchUrl).pipe(
+      map(response => response._embedded.songs)
+    );
+  }
 }
 
 
