@@ -59,8 +59,26 @@ export class SongService {
 
   getSong(songId: number): Observable<Song> {
     const songUrl = `${this.baseUrl}/${songId}`;
+    const song = this.httpClient.get<Song>(songUrl);
+    return song;
+  }
 
-    return this.httpClient.get<Song>(songUrl);
+  getGenreFromSong(songId: number): Observable<Genre>{
+    const songUrl = `${this.baseUrl}/${songId}`;
+    const genreUrl = `${songUrl}/genre`;
+    const genre = this.httpClient.get<Genre>(genreUrl);
+    return genre;
+  }
+
+  getArtistFromSong(songId: number): Observable<Artist> {
+    const songUrl = `${this.baseUrl}/${songId}`;
+    const artistUrl = `${songUrl}/artist`;
+    const artist = this.httpClient.get<Artist>(artistUrl);
+    return artist;
+  }
+
+  getGenre(genreUrl: string): Observable<Genre> {
+    return this.httpClient.get<Genre>(genreUrl);
   }
 
   private getSongs(searchUrl: string): Observable<Song[]> {

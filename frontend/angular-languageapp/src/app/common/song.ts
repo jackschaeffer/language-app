@@ -12,5 +12,8 @@ export class Song {
     yearReleased!: number;
     dateCreated!: Date;
     lastUpdated!: Date;
+    _links!: JSON[];
+    genre!: Genre;
+
 }
 
