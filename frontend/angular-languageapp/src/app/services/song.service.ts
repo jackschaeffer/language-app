@@ -72,6 +72,7 @@ interface GetResponseSongs {
   }
 }
 
+
 interface GetResponseGenres {
   _embedded: {
     genres: Genre[];

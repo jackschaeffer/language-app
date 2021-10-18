@@ -9,9 +9,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { GenreSidebarComponent } from './components/genre-sidebar/genre-sidebar.component';
 import { ArtistSidebarComponent } from './components/artist-sidebar/artist-sidebar.component';
 import { SearchComponent } from './components/search/search.component';
+import { SongDetailsComponent } from './components/song-details/song-details.component';
 
 
 const routes: Routes = [
+  {path: 'songs/:songId', component: SongDetailsComponent},
   {path: 'search/:keyword', component: SongListComponent},
   {path: 'genres/:genreId', component: SongListComponent},
   {path: 'genres', component: SongListComponent},
@@ -28,7 +30,8 @@ const routes: Routes = [
     SongListComponent,
     GenreSidebarComponent,
     ArtistSidebarComponent,
-    SearchComponent
+    SearchComponent,
+    SongDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

@@ -1,3 +1,5 @@
+import { Genre } from "./genre";
+
 export class Song {
     frTitle!: string;
     enTitle!: string;
@@ -9,5 +11,5 @@ export class Song {
     yearReleased!: number;
     dateCreated!: Date;
     lastUpdated!: Date;
-
 }
+
