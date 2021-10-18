@@ -57,6 +57,11 @@ export class SongService {
     return this.getSongs(searchUrl);
   }
 
+  getSong(songId: number): Observable<Song> {
+    const songUrl = `${this.baseUrl}/${songId}`;
+
+    return this.httpClient.get<Song>(songUrl);
+  }
 
   private getSongs(searchUrl: string): Observable<Song[]> {
     return this.httpClient.get<GetResponseSongs>(searchUrl).pipe(

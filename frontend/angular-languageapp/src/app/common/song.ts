@@ -1,6 +1,7 @@
 import { Genre } from "./genre";
 
 export class Song {
+    id!: number;
     frTitle!: string;
     enTitle!: string;
     description!: string;
