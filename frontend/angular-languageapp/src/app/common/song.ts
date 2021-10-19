@@ -1,3 +1,4 @@
+import { Artist } from "./artist";
 import { Genre } from "./genre";
 
 export class Song {
@@ -12,8 +13,9 @@ export class Song {
     yearReleased!: number;
     dateCreated!: Date;
     lastUpdated!: Date;
-    _links!: JSON[];
-    genre!: Genre;
+
+    genre: Genre = new Genre();
+    artist: Artist = new Artist();
 
 }
 

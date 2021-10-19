@@ -8,16 +8,14 @@
                     <th>Song</th>
                     <th>Artist</th>
                     <th>Genre</th>
-                    <th></th>
                 </tr>
             </thead>
 
             <tbody class="nb">
                 <tr *ngFor="let song of songs">
                     <td class="align-middle"> &nbsp; <a routerLink="/songs/{{ song.id }}" class="title"> {{ song.frTitle }} </a> - {{ song.enTitle }}</td>
-                    <td class="align-middle"> <a href="#"></a> </td>
-                    <td class="align-middle">  </td>
-                    <td class="align-middle"> <button type="button" class="btn btn-outline-danger"><i class="fa fa-heart" aria-hidden="true"></i> </button> </td>
+                    <td class="align-middle"> <a routerLink="/artists/{{ song.artist?.id }}">{{ song.artist?.artistName }}</a> </td>
+                    <td class="align-middle"> <a routerLink="/genres/{{ song.genre?.id }}/genre">{{ song.genre?.genreName }}</a>  </td>
                 </tr>
 
             </tbody>

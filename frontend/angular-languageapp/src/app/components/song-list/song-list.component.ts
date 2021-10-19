@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Artist } from 'src/app/common/artist';
+import { Genre } from 'src/app/common/genre';
 import { Song } from 'src/app/common/song';
 import { SongService } from 'src/app/services/song.service';
 
@@ -81,8 +84,25 @@ export class SongListComponent implements OnInit {
           }
           else {
             // no genre id or artist id 
-            this.songService.getSongList().subscribe(
+            const songs = this.songService.getSongList();
+            songs.subscribe(
               data => {
+
+                data.forEach((song) => {
+                  const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
+                  const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
+                  genre.subscribe(
+                    data => {
+                      song.genre = data;
+                    }
+                  )
+                  artist.subscribe(
+                    data => {
+                      song.artist = data;
+                    }
+                  )
+                });
+              
                 this.songs = data;
               }
             )
