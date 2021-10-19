@@ -62,22 +62,51 @@ export class SongListComponent implements OnInit {
       
           if (hasGenreId) {
               this.currentGenreId = +this.route.snapshot.paramMap.get('genreId')!;
-              console.log("Has Genre Id");
       
               // get songs for given genre id
               this.songService.getSongListByGenre(this.currentGenreId).subscribe(
                 data => {
+
+                  data.forEach((song) => {
+                    const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
+                    const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
+                    genre.subscribe(
+                      data => {
+                        song.genre = data;
+                      }
+                    )
+                    artist.subscribe(
+                      data => {
+                        song.artist = data;
+                      }
+                    )
+                  });
                   this.songs = data;
                 }
               )
           }
           else if (hasArtistId){
             this.currentArtistId = +this.route.snapshot.paramMap.get('artistId')!;
-              console.log("Has Artist Id");
       
               // get songs for given artist id
               this.songService.getSongListByArtist(this.currentArtistId).subscribe(
                 data => {
+
+                  data.forEach((song) => {
+                    const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
+                    const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
+                    genre.subscribe(
+                      data => {
+                        song.genre = data;
+                      }
+                    )
+                    artist.subscribe(
+                      data => {
+                        song.artist = data;
+                      }
+                    )
+                  });
+
                   this.songs = data;
                 }
               )
