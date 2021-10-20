@@ -17,5 +17,8 @@ export class Song {
     genre: Genre = new Genre();
     artist: Artist = new Artist();
 
+    frLyricsArr!: string[];
+    enLyricsArr!: string[];
+
 }
 

@@ -37,3 +37,7 @@ footer a {
 tbody.nb {
     border-top: 0px !important;
 }
+
+.lyric-row{
+    padding-bottom: 10px;
+}

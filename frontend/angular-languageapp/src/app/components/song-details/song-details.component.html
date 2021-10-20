@@ -7,8 +7,8 @@
 
                     <h5>{{ song.frTitle }} &#8226;  {{ song.enTitle }}</h5>
 
-                    <p>Artist: <a routerLink="/artists/{{ artist.id }}"> {{ artist.artistName }} </a></p>
-                    <p>Genre: <a routerLink="/genres/{{ genre.id }}"> {{ genre.genreName }} </a></p>
+                    <p>Artist: <a routerLink="/artists/{{ song.artist.id }}"> {{ song.artist.artistName }} </a></p>
+                    <p>Genre: <a routerLink="/genres/{{ song.genre.id }}"> {{ song.genre.genreName }} </a></p>
                     
                     <button type="button" class="btn btn-outline-danger"><i class="fa fa-heart" aria-hidden="true"></i> </button> 
 
@@ -19,18 +19,52 @@
 
             <br>
             
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-6">
                     <p>French Lyrics</p><br>
-                    {{ song.frLyrics }}
+
+                    <p *ngFor="let lyric of song.frLyricsArr">
+                        {{ lyric }}
+                    </p>
+
                 </div>
 
                 <div class="col-md-6">
                     <p>English Lyrics</p><br>
-                    {{ song.enLyrics }}
+                    
+                    <p *ngFor="let lyric of song.enLyricsArr">
+                        {{ lyric }}
+                    </p>
                 </div>
 
-            </div>
+            </div> -->
+
+            <table>
+                <thead>
+                    <th><h3>French Lyrics</h3></th>
+                    <th><h3>English Lyrics</h3></th>
+                </thead>
+                <br>
+                <tbody>
+                    <tr *ngFor="let frLyric of song.frLyricsArr; let i = index">
+                        <div *ngIf="frLyric==''; else showLyrics">
+                            <td>
+                                &nbsp; <br><br>
+                            </td>
+                            <td></td>
+                        </div>
+                        <ng-template #showLyrics>
+                            <td class="lyric{{i}} lyric-row">
+                                {{ frLyric }}
+                            </td>
+                            <td class="lyric{{i}} lyric-row">
+                                {{ song.enLyricsArr[i] }}
+                            </td>
+                        </ng-template>
+                    </tr>
+                </tbody>
+            </table>
+
             <br>
         </div>
     </div>

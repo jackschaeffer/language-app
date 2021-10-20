@@ -15,8 +15,6 @@ import { SongService } from 'src/app/services/song.service';
 export class SongDetailsComponent implements OnInit {
 
   song: Song = new Song();
-  genre: Genre = new Genre();
-  artist: Artist = new Artist();
 
   constructor(private songService: SongService,
               private route: ActivatedRoute) { }
@@ -38,8 +36,12 @@ export class SongDetailsComponent implements OnInit {
     forkJoin([song, genreFromSong, artistFromSong]).subscribe(
       data => {
         this.song = data[0];
-        this.genre = data[1];    
-        this.artist = data[2];       
+        this.song.genre = data[1];    
+        this.song.artist = data[2];  
+
+        this.song.frLyricsArr = this.song.frLyrics.split('\n');
+        this.song.enLyricsArr = this.song.enLyrics.split('\n');
+             
       }
     )
 
