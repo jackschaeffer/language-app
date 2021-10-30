@@ -5,6 +5,7 @@ import { Song } from '../common/song';
 import { map } from 'rxjs/operators';
 import { Genre } from '../common/genre';
 import { Artist } from '../common/artist';
+import { Phrase } from '../common/phrase';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +78,14 @@ export class SongService {
     return artist;
   }
 
+  getPhrasesFromSong(songId: number):  Observable<Phrase[]>  {
+    const songUrl = `${this.baseUrl}/${songId}`;
+    const phrasesUrl = `${songUrl}/phrases`;
+    return this.httpClient.get<GetResponsePhrases>(phrasesUrl).pipe(
+      map(response => response._embedded.phrases)
+    );
+  }
+
   getGenre(genreUrl: string): Observable<Genre> {
     return this.httpClient.get<Genre>(genreUrl);
   }
@@ -106,5 +115,11 @@ interface GetResponseGenres {
 interface GetResponseArtists {
   _embedded: {
     artists: Artist[];
+  }
+}
+
+interface GetResponsePhrases {
+  _embedded: {
+    phrases: Phrase[];
   }
 }

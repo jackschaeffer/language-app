@@ -65,6 +65,29 @@
                 </tbody>
             </table>
 
+            <br><br>
+
+            <h3>Phrases</h3>
+            <br>
+            <div *ngFor="let phrase of song.phrases">
+                <div class="card">
+                    <div class="card-body phraseCard">
+                        <div class="row">
+
+                            <div class="col-10">
+                                <h4>{{ phrase.frPhrase }}</h4>
+                                <p>{{ phrase.enPhrase }}</p>
+                            </div>
+
+                            <div class="col-2 verticalAlign">
+                                <button type="button" class="btn btn-outline-primary"><i class="fa fa-plus" aria-hidden="true"></i> </button> 
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <br>
+            </div>
+
             <br>
         </div>
     </div>

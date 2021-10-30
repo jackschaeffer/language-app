@@ -41,3 +41,16 @@ tbody.nb {
 .lyric-row{
     padding-bottom: 10px;
 }
+
+.verticalAlign{
+display:flex;
+  align-items:center; 
+  justify-content: center;
+}
+
+.phraseCard{
+    border-left: 10px solid  #007bff;
+    background-color: #fafafa;
+} .phraseCard p{
+    font-size: large;
+}

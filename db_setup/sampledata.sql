@@ -2,14 +2,13 @@
 USE `full-stack-languageapp` ;
 
 
--- INSERT INTO artist(artist_name) VALUES ('Eli Rose');
+INSERT INTO artist(artist_name) VALUES ('Eli Rose');
 INSERT INTO artist(artist_name) VALUES ('Yseult');
 
--- INSERT INTO genre(genre_name) VALUES ('Pop');
-
+INSERT INTO genre(genre_name) VALUES ('Pop');
 
 INSERT INTO song (fr_title, en_title, fr_lyrics, en_lyrics, genre_id, artist_id, release_year, date_created)
-VALUES ('L\'orage', 'The storm', 
+VALUES ('Rebelle', 'Rebel', 
 'On est à deux doigts de se perdre
 Déjà le feu monte à ma tête
 Une fois de trop, on fait la guerre sans fin
@@ -98,6 +97,20 @@ When I think about it, you haunted me, ah',
 
 
 
-INSERT INTO song (fr_title, en_title, fr_lyrics, en_lyrics, genre_id, artist_id, release_year, date_created)
-VALUES ('Rodéo', 'Rodeo', 'Bonjour', 'Hello', 1, 2, 2019, NOW());
+-- INSERT INTO song (fr_title, en_title, fr_lyrics, en_lyrics, genre_id, artist_id, release_year, date_created)
+-- VALUES ('Rodéo', 'Rodeo', 'Bonjour', 'Hello', 1, 2, 2019, NOW());
 
+
+
+
+INSERT INTO phrase(fr_phrase, en_phrase)
+VALUES ('être à deux doigts de', 'to be close to, to be about to');
+
+INSERT INTO phrase(fr_phrase, en_phrase)
+VALUES ('une fois de trop', 'one too many times');
+
+INSERT INTO song_phrase(song_id, phrase_id)
+VALUES (1, 1);
+
+INSERT INTO song_phrase(song_id, phrase_id)
+VALUES (1, 2);

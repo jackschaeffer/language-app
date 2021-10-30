@@ -1,5 +1,6 @@
 import { Artist } from "./artist";
 import { Genre } from "./genre";
+import { Phrase } from "./phrase";
 
 export class Song {
     id!: number;
@@ -16,6 +17,7 @@ export class Song {
 
     genre: Genre = new Genre();
     artist: Artist = new Artist();
+    phrases: Phrase[] = [];
 
     frLyricsArr!: string[];
     enLyricsArr!: string[];

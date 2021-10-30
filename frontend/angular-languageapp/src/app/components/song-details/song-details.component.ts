@@ -32,12 +32,14 @@ export class SongDetailsComponent implements OnInit {
     const song = this.songService.getSong(songId);
     const genreFromSong = this.songService.getGenreFromSong(songId);
     const artistFromSong = this.songService.getArtistFromSong(songId);
+    const phrasesFromSong = this.songService.getPhrasesFromSong(songId);
 
-    forkJoin([song, genreFromSong, artistFromSong]).subscribe(
+    forkJoin([song, genreFromSong, artistFromSong, phrasesFromSong]).subscribe(
       data => {
         this.song = data[0];
         this.song.genre = data[1];    
         this.song.artist = data[2];  
+        this.song.phrases = data[3];
 
         this.song.frLyricsArr = this.song.frLyrics.split('\n');
         this.song.enLyricsArr = this.song.enLyrics.split('\n');
