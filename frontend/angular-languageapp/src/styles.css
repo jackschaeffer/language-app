@@ -51,6 +51,9 @@ display:flex;
 .phraseCard{
     border-left: 10px solid  #007bff;
     background-color: #fafafa;
+    border-radius: .25rem;
 } .phraseCard p{
     font-size: large;
+    padding-left: 10px;
+    padding-top: 10px;
 }
