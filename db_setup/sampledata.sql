@@ -7,7 +7,7 @@ INSERT INTO artist(artist_name) VALUES ('Yseult');
 
 INSERT INTO genre(genre_name) VALUES ('Pop');
 
-INSERT INTO song (fr_title, en_title, fr_lyrics, en_lyrics, genre_id, artist_id, release_year, date_created)
+INSERT INTO song (fr_title, en_title, fr_lyrics, en_lyrics, youtube_url, genre_id, artist_id, release_year, date_created)
 VALUES ('Rebelle', 'Rebel', 
 'On est à deux doigts de se perdre
 Déjà le feu monte à ma tête
@@ -92,6 +92,8 @@ Yeah, yeah, yeah, yeah [ x5 ]
 If I lie, if I lied, ah
 I\'m lying to myself, I missed you, ah
 When I think about it, you haunted me, ah', 
+
+'Exr3pRLvcBg',
 
 1, 1, 2021, NOW());
 

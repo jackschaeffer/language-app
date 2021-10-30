@@ -11,6 +11,7 @@ import { ArtistSidebarComponent } from './components/artist-sidebar/artist-sideb
 import { SearchComponent } from './components/search/search.component';
 import { SongDetailsComponent } from './components/song-details/song-details.component';
 
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 const routes: Routes = [
   {path: 'songs/:songId', component: SongDetailsComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    YouTubePlayerModule
   ],
   providers: [SongService],
   bootstrap: [AppComponent]
