@@ -13,6 +13,8 @@ import { SongDetailsComponent } from './components/song-details/song-details.com
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 const routes: Routes = [
   {path: 'songs/:songId', component: SongDetailsComponent},
   {path: 'search/:keyword', component: SongListComponent},
@@ -38,7 +40,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    NgbModule
   ],
   providers: [SongService],
   bootstrap: [AppComponent]

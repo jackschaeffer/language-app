@@ -13,10 +13,20 @@ import { SongService } from 'src/app/services/song.service';
 })
 export class SongListComponent implements OnInit {
 
-  songs!: Song[];
+  songs: Song[] = [];
+
   currentGenreId!: number;
+  previousGenreId!: number;
+
   currentArtistId!: number;
-  searchMode!: boolean;
+  previousArtistId!: number;
+
+  searchMode: boolean = false;
+
+  // properties for pagination
+  pageNumber: number = 1;
+  pageSize: number = 20;
+  totalElements: number = 0;
 
   constructor(private songService: SongService,
               private route: ActivatedRoute) { }
@@ -29,6 +39,7 @@ export class SongListComponent implements OnInit {
 
   listSongs(){
 
+    // Check if user is searching songs by keyword
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
     console.log(this.searchMode);
     if (this.searchMode) {
@@ -40,13 +51,32 @@ export class SongListComponent implements OnInit {
 
   }
 
-
+  // QUERY SONG WITH KEYWORD
   handleSearchSongs(){
     const theKeyword = this.route.snapshot.paramMap.get('keyword');
 
-    this.songService.searchSongs(theKeyword!).subscribe(
+    this.songService.searchSongs(this.pageNumber-1, this.pageSize, theKeyword!).subscribe(
       data => {
-        this.songs = data;
+
+        this.songs = data._embedded.songs;
+        this.pageNumber = data.page.number + 1;
+        this.pageSize = data.page.size;
+        this.totalElements = data.page.totalElements;
+
+        data._embedded.songs.forEach((song) => {
+          const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
+          const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
+          genre.subscribe(
+            data => {
+              song.genre = data;
+            }
+          )
+          artist.subscribe(
+            data => {
+              song.artist = data;
+            }
+          )
+        });
       }
     )
   }
@@ -60,14 +90,29 @@ export class SongListComponent implements OnInit {
 
           const hasArtistId: boolean = this.route.snapshot.paramMap.has('artistId');
       
+
+          // SEARCH BY GENRE
+          // handle querying songs if a genre id has been speicifed
           if (hasGenreId) {
               this.currentGenreId = +this.route.snapshot.paramMap.get('genreId')!;
-      
+            
+              // If we have a different genre id than previously queried
+              // then we need to set the pageNumber back to 1
+              if (this.previousGenreId != this.currentGenreId){
+                this.pageNumber = 1;
+              }
+              this.previousGenreId = this.currentGenreId;
+
               // get songs for given genre id
-              this.songService.getSongListByGenre(this.currentGenreId).subscribe(
+              this.songService.getSongListByGenre(this.pageNumber-1, this.pageSize, this.currentGenreId).subscribe(
                 data => {
 
-                  data.forEach((song) => {
+                  this.songs = data._embedded.songs;
+                  this.pageNumber = data.page.number + 1;
+                  this.pageSize = data.page.size;
+                  this.totalElements = data.page.totalElements;
+  
+                  data._embedded.songs.forEach((song) => {
                     const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
                     const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
                     genre.subscribe(
@@ -81,43 +126,65 @@ export class SongListComponent implements OnInit {
                       }
                     )
                   });
-                  this.songs = data;
+
                 }
               )
           }
+
+
+          // SEARCH BY ARTIST
+          // handle querying songs if a artist id has been speicifed
           else if (hasArtistId){
             this.currentArtistId = +this.route.snapshot.paramMap.get('artistId')!;
-      
-              // get songs for given artist id
-              this.songService.getSongListByArtist(this.currentArtistId).subscribe(
-                data => {
 
-                  data.forEach((song) => {
-                    const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
-                    const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
-                    genre.subscribe(
-                      data => {
-                        song.genre = data;
-                      }
-                    )
-                    artist.subscribe(
-                      data => {
-                        song.artist = data;
-                      }
-                    )
-                  });
+            // If we have a different artist id than previously queried
+            // then we need to set the pageNumber back to 1
+            if (this.previousArtistId != this.currentArtistId){
+              this.pageNumber = 1;
+            }
+            this.previousArtistId = this.currentArtistId;
+    
+            // get songs for given artist id
+            this.songService.getSongListByArtist(this.pageNumber-1, this.pageSize, this.currentArtistId).subscribe(
+              data => {
 
-                  this.songs = data;
-                }
-              )
+              this.songs = data._embedded.songs;
+              this.pageNumber = data.page.number + 1;
+              this.pageSize = data.page.size;
+              this.totalElements = data.page.totalElements;
+
+              data._embedded.songs.forEach((song) => {
+                const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
+                const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
+                genre.subscribe(
+                  data => {
+                    song.genre = data;
+                  }
+                )
+                artist.subscribe(
+                  data => {
+                    song.artist = data;
+                  }
+                )
+              });
+                
+              }
+            )
           }
+
+          // SEARCH ALL SONGS
+          // handle querying songs when no artist or genre has been specified 
           else {
-            // no genre id or artist id 
-            const songs = this.songService.getSongList();
+            const songs = this.songService.getSongList(this.pageNumber-1, this.pageSize);
             songs.subscribe(
               data => {
 
-                data.forEach((song) => {
+                this.songs = data._embedded.songs;
+                this.pageNumber = data.page.number + 1;
+                this.pageSize = data.page.size;
+                this.totalElements = data.page.totalElements;
+
+                data._embedded.songs.forEach((song) => {
                   const genre: Observable<Genre> = this.songService.getGenreFromSong(song.id);
                   const artist: Observable<Artist> = this.songService.getArtistFromSong(song.id);
                   genre.subscribe(
@@ -131,8 +198,7 @@ export class SongListComponent implements OnInit {
                     }
                   )
                 });
-              
-                this.songs = data;
+        
               }
             )
           }

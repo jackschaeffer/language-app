@@ -23,10 +23,24 @@
         </table>
         
 
+        <!-- If no songs are found display a message -->
         <div *ngIf="songs?.length == 0" class="container">
             <div class="alert alert-danger col-md-12" role="alert">
                 No songs found.
             </div>
         </div>
 
+    </div>
+
+    <br>
+    <!-- Pagination Component -->
+    <div class="footer-pagination col-12">
+        <ngb-pagination [(page)]="pageNumber"
+                        [pageSize]="pageSize"
+                        [collectionSize]="totalElements"
+                        [maxSize]="5"
+                        [boundaryLinks]="false"
+                        (pageChange)="listSongs()">
+
+        </ngb-pagination>
     </div>

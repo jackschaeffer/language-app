@@ -21,22 +21,45 @@ export class SongService {
   constructor(private httpClient: HttpClient) { }
 
 
-  getSongListByGenre(theGenreId: number): Observable<Song[]>{
-    const genreSearchUrl = `${this.baseUrl}/search/findByGenreId?id=${theGenreId}`;
+  // QUERY ALL SONGS
+  // Query songs without genre, artist, or keyword specified
+  getSongList(page: number,
+              pageSize:number): Observable<GetResponseSongs>{
 
-    return this.getSongs(genreSearchUrl);
+    const searchUrl = this.baseUrl + `?page=${page}&size=${pageSize}`;
+    return this.httpClient.get<GetResponseSongs>(searchUrl);
+
   }
 
-  getSongListByArtist(theArtistId: number) {
-    const artistSearchUrl = `${this.baseUrl}/search/findByArtistId?id=${theArtistId}`;
+  // QUERY BY GENRE
+  // Query songs by genre id
+  getSongListByGenre(page: number,
+                    pageSize:number,
+                    theGenreId: number): Observable<GetResponseSongs>{
+    
+    const genreSearchUrl = `${this.baseUrl}/search/findByGenreId?id=${theGenreId}&page=${page}&size=${pageSize}`;
+    return this.httpClient.get<GetResponseSongs>(genreSearchUrl);
 
-    return this.getSongs(artistSearchUrl);
   }
 
-  getSongList(): Observable<Song[]>{
-    return this.httpClient.get<GetResponseSongs>(this.baseUrl).pipe(
-      map(response => response._embedded.songs)
-    );
+  // QUERY BY ARTIST
+  // Query songs by artist id
+  getSongListByArtist(page: number,
+                      pageSize:number,
+                      theArtistId: number): Observable<GetResponseSongs> {
+
+    const artistSearchUrl = `${this.baseUrl}/search/findByArtistId?id=${theArtistId}&page=${page}&size=${pageSize}`;
+    return this.httpClient.get<GetResponseSongs>(artistSearchUrl);
+
+  }
+
+  searchSongs(page: number,
+              pageSize:number,
+              theKeyword: string): Observable<GetResponseSongs> {
+
+    const searchUrl = `${this.baseUrl}/search/findByFrTitleContaining?frTitle=${theKeyword}?page=${page}&size=${pageSize}`;
+    return this.httpClient.get<GetResponseSongs>(searchUrl);
+
   }
 
 
@@ -50,12 +73,6 @@ export class SongService {
     return this.httpClient.get<GetResponseArtists>(this.artistsUrl).pipe(
       map(response => response._embedded.artists)
     );
-  }
-
-  searchSongs(theKeyword: string): Observable<Song[]>{
-    const searchUrl = `${this.baseUrl}/search/findByFrTitleContaining?frTitle=${theKeyword}`;
-
-    return this.getSongs(searchUrl);
   }
 
   getSong(songId: number): Observable<Song> {
@@ -102,6 +119,12 @@ export class SongService {
 interface GetResponseSongs {
   _embedded: {
     songs: Song[];
+  }
+  page:{
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
   }
 }
 

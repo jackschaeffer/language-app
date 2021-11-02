@@ -79,3 +79,8 @@ display:flex;
 .textright{
     text-align: center;
 }
+
+.footer-pagination{
+    display: flex !important;
+    justify-content: center !important;
+}
