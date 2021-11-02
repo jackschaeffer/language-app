@@ -21,6 +21,8 @@ export class SongListComponent implements OnInit {
   currentArtistId!: number;
   previousArtistId!: number;
 
+  previousKeyword!: string;
+
   searchMode: boolean = false;
 
   // properties for pagination
@@ -41,7 +43,6 @@ export class SongListComponent implements OnInit {
 
     // Check if user is searching songs by keyword
     this.searchMode = this.route.snapshot.paramMap.has('keyword');
-    console.log(this.searchMode);
     if (this.searchMode) {
       this.handleSearchSongs();
     }
@@ -53,9 +54,16 @@ export class SongListComponent implements OnInit {
 
   // QUERY SONG WITH KEYWORD
   handleSearchSongs(){
-    const theKeyword = this.route.snapshot.paramMap.get('keyword');
+    const keyword = this.route.snapshot.paramMap.get('keyword');
 
-    this.songService.searchSongs(this.pageNumber-1, this.pageSize, theKeyword!).subscribe(
+    // If we have a different keyword than previously queried
+    // then we need to set the pageNumber back to 1
+    if (this.previousKeyword != keyword){
+      this.pageNumber = 1;
+    }
+    this.previousKeyword = keyword!;
+
+    this.songService.searchSongs(this.pageNumber-1, this.pageSize, keyword!).subscribe(
       data => {
 
         this.songs = data._embedded.songs;

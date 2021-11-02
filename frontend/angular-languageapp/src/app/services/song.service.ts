@@ -57,7 +57,7 @@ export class SongService {
               pageSize:number,
               theKeyword: string): Observable<GetResponseSongs> {
 
-    const searchUrl = `${this.baseUrl}/search/findByFrTitleContaining?frTitle=${theKeyword}?page=${page}&size=${pageSize}`;
+    const searchUrl = `${this.baseUrl}/search/findByFrTitleContaining?frTitle=${theKeyword}&page=${page}&size=${pageSize}`;
     return this.httpClient.get<GetResponseSongs>(searchUrl);
 
   }
