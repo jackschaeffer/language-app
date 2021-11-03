@@ -4,6 +4,7 @@ import { forkJoin } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Artist } from 'src/app/common/artist';
 import { Genre } from 'src/app/common/genre';
+import { Phrase } from 'src/app/common/phrase';
 import { Song } from 'src/app/common/song';
 import { SongService } from 'src/app/services/song.service';
 
@@ -47,6 +48,20 @@ export class SongDetailsComponent implements OnInit {
       }
     )
 
+  }
+
+
+  saveSong(song: Song){
+
+    console.log(song.frTitle);
+
+  }
+
+
+  addPhrase(phrase: Phrase){
+
+    console.log(phrase.id);
+    
   }
 
 }

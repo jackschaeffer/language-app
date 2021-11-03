@@ -43,9 +43,13 @@ tbody.nb {
 }
 
 .verticalAlign{
-display:flex;
-  align-items:center; 
-  justify-content: center;
+    display:flex;
+    align-items:center; 
+    justify-content: center;
+}
+
+.rightAlign{
+    float: right;
 }
 
 .phraseCard{
