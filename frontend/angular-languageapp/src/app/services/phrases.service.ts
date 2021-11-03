@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Phrase } from '../common/phrase';
 import { PhraseCard } from '../common/phrase-card';
 
 @Injectable({
@@ -68,5 +69,6 @@ export class PhrasesService {
       }
 
       this.totalNumber.next(this.phrases.length);
+
   }
 }

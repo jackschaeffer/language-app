@@ -5,7 +5,9 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Artist } from 'src/app/common/artist';
 import { Genre } from 'src/app/common/genre';
 import { Phrase } from 'src/app/common/phrase';
+import { PhraseCard } from 'src/app/common/phrase-card';
 import { Song } from 'src/app/common/song';
+import { PhrasesService } from 'src/app/services/phrases.service';
 import { SongService } from 'src/app/services/song.service';
 
 @Component({
@@ -18,7 +20,8 @@ export class SongDetailsComponent implements OnInit {
   song: Song = new Song();
 
   constructor(private songService: SongService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private phrasesService: PhrasesService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -51,16 +54,12 @@ export class SongDetailsComponent implements OnInit {
   }
 
 
-  saveSong(song: Song){
-
-    console.log(song.frTitle);
-
-  }
-
 
   addPhrase(phrase: Phrase){
 
-    console.log(phrase.id);
+    const phraseCard: PhraseCard = new PhraseCard(phrase);
+
+    this.phrasesService.addPhrase(phraseCard);
     
   }
 

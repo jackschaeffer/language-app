@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PhrasesService } from 'src/app/services/phrases.service';
 
 @Component({
   selector: 'app-phrase-status',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PhraseStatusComponent implements OnInit {
 
-  constructor() { }
+  overallScore: number = 0;
+  totalNumber: number = 0;
+
+  constructor(private phrasesService: PhrasesService) { }
 
   ngOnInit(): void {
+    this.updatePhrasesStatus();
+  }
+
+
+  updatePhrasesStatus() {
+    
+    // Subscribe to the phraseService properties
+    this.phrasesService.overallScore.subscribe(
+      data => this.overallScore = data
+    );
+
+    this.phrasesService.totalNumber.subscribe(
+      data => this.totalNumber = data
+    );
   }
 
 }
